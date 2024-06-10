@@ -23,7 +23,7 @@ public class DemoController {
     }
 
     @GetMapping("/exception")
-    public String exception(){
+    public String exception() {
         return demoService.exception();
     }
 }
