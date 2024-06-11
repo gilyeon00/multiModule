@@ -7,6 +7,7 @@ import dev.be.modulecommon.enums.CodeEnum;
 import dev.be.modulecommon.repository.MemberRepository;
 import dev.be.modulecommon.service.CommonDemoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,12 +17,23 @@ public class DemoService {
     private final CommonDemoService commonDemoService;
     private final MemberRepository memberRepository;
 
+
+    @Value("${profile-name}")
+    private String profileName;
+
     public String save(){
         Member member = Member
                 .builder()
                 .name(Thread.currentThread().getName())
                 .build();
         memberRepository.save(member);
+
+        System.out.println("profileName : " + profileName);
+        if(profileName.equals("local")){
+            // aaa
+        } else if (profileName.equals("beta")) {
+            // bbb
+        }
         return "save";
     }
 
